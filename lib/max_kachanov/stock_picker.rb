@@ -8,8 +8,8 @@ module MaxKachanov
 
     def pick
       profits_with_prices = prices.each_with_object({}) do |buy_price, profits_with_prices|
-        prices[prices.index(buy_price)..-1].each do |sell_price|
-          profits_with_prices[(sell_price - buy_price)] = [prices.index(buy_price), prices.index(sell_price)]
+        prices[prices.index(buy_price)..-1].each_with_index do |sell_price, sell_price_index|
+          profits_with_prices[(sell_price - buy_price)] = [prices.index(buy_price), sell_price_index]
         end
       end
 
